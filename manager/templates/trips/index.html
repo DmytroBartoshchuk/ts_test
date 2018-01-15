@@ -1,7 +1,7 @@
 {% if all_trips %}
     <ul>
         {% for trip in all_trips %}
-        <li><a href="/manager/trips/{{ trip.id }}/">{{ trip }}</a></li>
+        <li><a href="{% url 'trip_detail' trip.id %}">{{ trip }}</a></li>
         {% endfor %}
     </ul>
 {% else %}

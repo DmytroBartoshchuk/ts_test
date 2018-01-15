@@ -1,1 +1,12 @@
-{{carrier}}
+<h1>{{carrier.name}}</h1>
+<h2>Registered: {{carrier.register_date}}</h2>
+
+{% if carrier.trip_set.all %}
+    <ul>
+        {% for trip in carrier.trip_set.all %}
+            <li>{{trip}}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h2>Carrier does not have trips</h2>
+{% endif %}
