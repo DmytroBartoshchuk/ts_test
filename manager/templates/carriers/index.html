@@ -1,0 +1,9 @@
+{% if all_carriers %}
+    <ul>
+        {% for carrier in all_carriers %}
+        <li><a href="/manager/carriers/{{ carrier.id }}/">{{ carrier.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h3>You don't have any carriers</h3>
+{% endif %}

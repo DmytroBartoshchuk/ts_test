@@ -1,0 +1,9 @@
+{% if all_orders %}
+    <ul>
+        {% for order in all_orders %}
+        <li><a href="/manager/orders/{{ order.id }}/">{{ order.surname }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <h3>You don't have any orders</h3>
+{% endif %}
