@@ -1,7 +1,7 @@
 {% if all_carriers %}
     <ul>
         {% for carrier in all_carriers %}
-        <li><a href="{% url 'carrier_detail' carrier.id %}">{{ carrier.name }}</a></li>
+        <li><a href="{% url 'manager:carrier_detail' carrier.id %}">{{ carrier.name }}</a></li>
         {% endfor %}
     </ul>
 {% else %}

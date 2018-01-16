@@ -1,6 +1,4 @@
-from django.http import Http404
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Carrier, Order, Trip
 
 
@@ -15,10 +13,7 @@ def carrier_list(request):
 
 
 def carrier_detail(request, carrier_id):
-    try:
-        carrier = Carrier.objects.get(pk=carrier_id)
-    except Carrier.DoesNotExist:
-        raise Http404("Carrier does not exist")
+    carrier = get_object_or_404(Carrier, pk=carrier_id)
     return render(request, 'carriers/detail.html', {'carrier': carrier})
 
 
@@ -29,10 +24,7 @@ def trip_list(request):
 
 
 def trip_detail(request, trip_id):
-    try:
-        trip = Trip.objects.get(pk=trip_id)
-    except Trip.DoesNotExist:
-        raise Http404("Trip does not exist")
+    trip = get_object_or_404(Trip, pk=trip_id)
     return render(request, 'trips/detail.html', {'trip': trip})
 
 
@@ -43,8 +35,5 @@ def order_list(request):
 
 
 def order_detail(request, order_id):
-    try:
-        order = Order.objects.get(pk=order_id)
-    except Order.DoesNotExist:
-        raise Http404("Trip does not exist")
+    order = get_object_or_404(Order, pk=order_id)
     return render(request, 'orders/detail.html', {'order': order})
