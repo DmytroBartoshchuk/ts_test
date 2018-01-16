@@ -1,9 +1,13 @@
-{% if all_orders %}
-    <ul>
-        {% for order in all_orders %}
-        <li><a href="{% url 'manager:order_detail' order.id %}">{{ order.surname }}</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <h3>You don't have any orders</h3>
-{% endif %}
+{% extends "layouts/master.html" %}
+{% block title %}Manager{% endblock %}
+{% block content %}
+    {% if all_orders %}
+        <ul>
+            {% for order in all_orders %}
+            <li><a href="{% url 'manager:order_detail' order.id %}">{{ order.surname }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>You don't have any orders</h3>
+    {% endif %}
+{% endblock %}

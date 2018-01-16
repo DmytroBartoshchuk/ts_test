@@ -1,1 +1,12 @@
-<h1>This is portal</h1>
+{% extends "layouts/master.html" %}
+{% block title %}Portal{% endblock %}
+{% block content %}
+    <h1>TickSell</h1>
+    <form action="{% url 'portal:results' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="departure_city" value="{{ departure_city }}">
+        <input type="text" name="arrive_city" value="{{ arrive_city }}">
+        <input type="date" name="departure_date" value="{{ date }}">
+        <input type="submit" value="Search">
+    </form>
+{% endblock %}

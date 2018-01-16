@@ -1,9 +1,13 @@
-{% if all_trips %}
-    <ul>
-        {% for trip in all_trips %}
-        <li><a href="{% url 'manager:trip_detail' trip.id %}">{{ trip }}</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <h3>You don't have any trips</h3>
-{% endif %}
+{% extends "layouts/master.html" %}
+{% block title %}Manager{% endblock %}
+{% block content %}
+    {% if all_trips %}
+        <ul>
+            {% for trip in all_trips %}
+            <li><a href="{% url 'manager:trip_detail' trip.id %}">{{ trip }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>You don't have any trips</h3>
+    {% endif %}
+{% endblock %}

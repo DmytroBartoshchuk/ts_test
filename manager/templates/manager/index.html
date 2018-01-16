@@ -1,5 +1,9 @@
+{% extends "layouts/master.html" %}
+{% block title %}Manager{% endblock %}
+{% block content %}
     <ul>
         <li><a href="{% url 'manager:carrier_list' %}">Carriers</a></li>
         <li><a href="{% url 'manager:order_list' %}">Orders</a></li>
         <li><a href="{% url 'manager:trip_list' %}">Trips</a></li>
     </ul>
+{% endblock %}

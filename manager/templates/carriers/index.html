@@ -1,9 +1,13 @@
-{% if all_carriers %}
-    <ul>
-        {% for carrier in all_carriers %}
-        <li><a href="{% url 'manager:carrier_detail' carrier.id %}">{{ carrier.name }}</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <h3>You don't have any carriers</h3>
-{% endif %}
+{% extends "layouts/master.html" %}
+{% block title %}Manager{% endblock %}
+{% block content %}
+    {% if all_carriers %}
+        <ul>
+            {% for carrier in all_carriers %}
+            <li><a href="{% url 'manager:carrier_detail' carrier.id %}">{{ carrier.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>You don't have any carriers</h3>
+    {% endif %}
+{% endblock %}

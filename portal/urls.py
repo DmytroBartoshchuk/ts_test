@@ -6,4 +6,7 @@ app_name = 'portal'
 urlpatterns = [
     # /portal/
     url(r'^$', views.index, name='index'),
+
+    # /portal/results/
+    url(r'^results/$', views.results, name='results'),
 ]
