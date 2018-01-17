@@ -1,26 +1,16 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.views import generic
+from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Carrier, Order, Trip
 
 
+# main manager views
 def index(request):
     return render(request, 'manager/index.html')
 
 
-'''
-def carrier_list(request):
-    all_carriers = Carrier.objects.all()
-    context = {'all_carriers': all_carriers}
-    return render(request, 'carriers/index.html', context)
-
-
-def carrier_detail(request, carrier_id):
-    carrier = get_object_or_404(Carrier, pk=carrier_id)
-    return render(request, 'carriers/detail.html', {'carrier': carrier})
-'''
-
-
+# carrier's views
 class IndexCarrierView(generic.ListView):
     template_name = 'carriers/index.html'
     context_object_name = 'all_carriers'
@@ -34,19 +24,7 @@ class DetailCarrierView(generic.DetailView):
     template_name = 'carriers/detail.html'
 
 
-'''
-def trip_list(request):
-    all_trips = Trip.objects.all()
-    context = {'all_trips': all_trips}
-    return render(request, 'trips/index.html', context)
-
-
-def trip_detail(request, trip_id):
-    trip = get_object_or_404(Trip, pk=trip_id)
-    return render(request, 'trips/detail.html', {'trip': trip})
-'''
-
-
+# trip's views
 class IndexTripView(generic.ListView):
     template_name = 'trips/index.html'
     context_object_name = 'all_trips'
@@ -60,19 +38,7 @@ class DetailTripView(generic.DetailView):
     template_name = 'trips/detail.html'
 
 
-'''
-def order_list(request):
-    all_orders = Order.objects.all()
-    context = {'all_orders': all_orders}
-    return render(request, 'orders/index.html', context)
-
-
-def order_detail(request, order_id):
-    order = get_object_or_404(Order, pk=order_id)
-    return render(request, 'orders/detail.html', {'order': order})
-'''
-
-
+# order's views
 class IndexOrderView(generic.ListView):
     template_name = 'orders/index.html'
     context_object_name = 'all_orders'
@@ -86,7 +52,19 @@ class DetailOrderView(generic.DetailView):
     template_name = 'orders/detail.html'
 
 
+# create, update, delete views
 class CarrierCreate(CreateView):
     model = Carrier
     fields = ['name', 'register_date']
     template_name = 'carriers/carrier_form.html'
+
+
+class CarrierUpdate(UpdateView):
+    model = Carrier
+    fields = ['name', 'register_date']
+    template_name = 'carriers/carrier_form.html'
+
+
+class CarrierDelete(DeleteView):
+    model = Carrier
+    success_url = reverse_lazy('manager:carrier_list')

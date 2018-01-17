@@ -12,7 +12,23 @@
         {% if all_carriers %}
             <ul>
                 {% for carrier in all_carriers %}
-                <li><a href="{% url 'manager:carrier_detail' carrier.id %}">{{ carrier.name }}</a></li>
+                <li>
+                    <a href="{% url 'manager:carrier_detail' carrier.id %}">{{ carrier.name }}</a>
+                    <form action="{% url 'manager:carrier-delete' carrier.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="carrier_id" value="{{ carrier.id }}">
+                        <button type="submit" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </form>
+                    <form action="{% url 'manager:carrier-update' carrier.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="carrier_id" value="{{ carrier.id }}">
+                        <button type="submit" class="btn btn-default btn-sm">
+                            <span>update</span>
+                        </button>
+                    </form>
+                </li>
                 {% endfor %}
             </ul>
         {% else %}

@@ -3,6 +3,8 @@
 {% block nav_active %}active{% endblock %}
 {% block content %}
     <h1>{{carrier.name}}</h1>
+    <span>Agreement: {{carrier.agreement.url}}</span>
+    <img src="{{ carrier.agreement.url }}" class="img-responsive">
     <h2>Registered: {{carrier.register_date}}</h2>
 
     {% if carrier.trip_set.all %}

@@ -1,5 +1,7 @@
 from django.conf.urls import url
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'manager'
 
@@ -25,6 +27,16 @@ urlpatterns = [
     # /manager/trip/<trip_id>/
     url(r'^trips/(?P<pk>[0-9]+)/$', views.DetailTripView.as_view(), name='trip_detail'),
 
-    # /music/carrier/add/
+    # /manager/carrier/add/
     url(r'^carrier/add/$', views.CarrierCreate.as_view(), name='carrier-add'),
+
+    # /manager/carrier/<carrier_id>/
+    url(r'^carrier/(?P<pk>[0-9]+)/$', views.CarrierUpdate.as_view(), name='carrier-update'),
+
+    # /manager/carrier/<carrier_id>/delete/
+    url(r'^carrier/(?P<pk>[0-9]+)/delete/$', views.CarrierDelete.as_view(), name='carrier-delete'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

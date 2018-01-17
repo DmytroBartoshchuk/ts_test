@@ -5,6 +5,7 @@ from django.urls import reverse
 class Carrier(models.Model):
     name = models.CharField(max_length=500)
     register_date = models.DateField()
+    agreement = models.FileField(null=True, blank=True)
 
     def get_absolute_url(self):
         return reverse('manager:carrier_detail', kwargs={'pk': self.pk})
