@@ -7,6 +7,4 @@ def index(request):
 
 
 def results(request):
-    all_trips = Trip.objects.all()
-    context = {'all_trips': all_trips}
-    return render(request, 'portal/results.html', context)
+    return render(request, 'portal/results.html')
