@@ -2,13 +2,21 @@
 {% block title %}Manager{% endblock %}
 {% block nav_active %}active{% endblock %}
 {% block content %}
-    {% if all_carriers %}
-        <ul>
-            {% for carrier in all_carriers %}
-            <li><a href="{% url 'manager:carrier_detail' carrier.id %}">{{ carrier.name }}</a></li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <h3>You don't have any carriers</h3>
-    {% endif %}
+    <div class="col-sm col-sm-10">
+        <a href="{% url 'manager:carrier-add' %}">
+            <button class="btn btn-success">Add new Carrier</button>
+        </a>
+    </div>
+    <div class="col-sm col-sm-10">
+        <h2>List of carriers:</h2>
+        {% if all_carriers %}
+            <ul>
+                {% for carrier in all_carriers %}
+                <li><a href="{% url 'manager:carrier_detail' carrier.id %}">{{ carrier.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h3>You don't have any carriers</h3>
+        {% endif %}
+    </div>
 {% endblock %}

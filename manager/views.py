@@ -89,3 +89,4 @@ class DetailOrderView(generic.DetailView):
 class CarrierCreate(CreateView):
     model = Carrier
     fields = ['name', 'register_date']
+    template_name = 'carriers/carrier_form.html'

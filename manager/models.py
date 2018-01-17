@@ -7,7 +7,7 @@ class Carrier(models.Model):
     register_date = models.DateField()
 
     def get_absolute_url(self):
-        return reverse('manager:carriers_detail', kwargs={'pk': self.pk})
+        return reverse('manager:carrier_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.name
