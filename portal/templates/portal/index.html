@@ -1,5 +1,6 @@
 {% extends "layouts/master.html" %}
 {% block title %}Portal{% endblock %}
+{% block nav_active_p %}active{% endblock %}
 {% block content %}
     <h1>TickSell</h1>
     <form action="{% url 'portal:results' %}" method="post">

@@ -1,9 +1,13 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Carrier(models.Model):
     name = models.CharField(max_length=500)
     register_date = models.DateField()
+
+    def get_absolute_url(self):
+        return reverse('manager:carriers_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.name

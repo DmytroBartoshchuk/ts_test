@@ -24,4 +24,7 @@ urlpatterns = [
 
     # /manager/trip/<trip_id>/
     url(r'^trips/(?P<pk>[0-9]+)/$', views.DetailTripView.as_view(), name='trip_detail'),
+
+    #
+    url(r'carrier/add/$', views.CarrierCreate.as_view(), name='carrier-add'),
 ]

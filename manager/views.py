@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Carrier, Order, Trip
 
 
@@ -83,3 +84,8 @@ class IndexOrderView(generic.ListView):
 class DetailOrderView(generic.DetailView):
     model = Order
     template_name = 'orders/detail.html'
+
+
+class CarrierCreate(CreateView):
+    model = Carrier
+    fields = ['name', 'register_date']

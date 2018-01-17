@@ -28,13 +28,13 @@
             <!-- Items -->
             <div class="collapse navbar-collapse" id="topNavBar">
                 <ul class="nav navbar-nav">
-                    <li class="active">
+                    <li class="{% block nav_active %}{% endblock %}">
                         <a href="{% url 'manager:index' %}">
                             <span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span>&nbsp;
                             Manager
                         </a>
                     </li>
-                    <li class="">
+                    <li class="{% block nav_active_p %}{% endblock %}">
                         <a href="{% url 'portal:index' %}">
                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>&nbsp;
                             Portal
