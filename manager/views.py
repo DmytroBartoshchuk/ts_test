@@ -1,11 +1,15 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.urls import reverse_lazy
 from django.contrib.auth import authenticate, login
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import View
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 from .models import Carrier, Order, Trip
 from .forms import UserForm
+from .serializers import TripSerializer
 
 
 # main manager views
@@ -73,6 +77,7 @@ class CarrierDelete(DeleteView):
     success_url = reverse_lazy('manager:carrier_list')
 
 
+# registration view
 class UserFormView(View):
     form_class = UserForm
     template_name = 'manager/registration_form.html'
@@ -106,7 +111,17 @@ class UserFormView(View):
         return render(request, self.template_name, {'form': form})
 
 
+# Lists all trips or create a new one
+# serialized/
+class TripList(APIView):
 
+    def get(self, request):
+        trips = Trip.objects.all()
+        serializer = TripSerializer(trips, many=True)
+        return Response(serializer.data)
+
+    def post(self):
+        pass
 
 
 
