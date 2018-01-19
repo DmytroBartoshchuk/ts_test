@@ -9,6 +9,9 @@ urlpatterns = [
     # /manager/
     url(r'^$', views.index, name='index'),
 
+    #
+    url(r'^register/$', views.UserFormView.as_view(), name='register'),
+
     # /manager/carriers/
     url(r'^carriers/$', views.IndexCarrierView.as_view(), name='carrier_list'),
 
