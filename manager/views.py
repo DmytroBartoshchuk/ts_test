@@ -7,9 +7,12 @@ from django.views.generic import View
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from django.http import HttpResponse
+from django.template.loader import get_template
 from .models import Carrier, Order, Trip
 from .forms import UserForm
 from .serializers import TripSerializer
+from .utils import render_to_pdf
 
 
 # main manager views
@@ -111,7 +114,7 @@ class UserFormView(View):
         return render(request, self.template_name, {'form': form})
 
 
-# Lists all trips or create a new one
+# JSON view (Lists all trips or create a new one)
 # serialized/
 class TripList(APIView):
 
@@ -123,6 +126,34 @@ class TripList(APIView):
     def post(self):
         pass
 
+
+# pdf view
+# /ticket_pdf/
+class GeneratePDF(View):
+    def get(self, request, *args, **kwargs):
+        template = get_template('pdf/ticket.html')
+        #template_name = 'pdf/ticket.html'
+        context = {
+            'id': 123,
+            'carrier': 'Trans',
+            'name': 'Dima',
+            'surname': 'Bart',
+            'email': 'ad@ad.com',
+            'phone': '20000025252'
+        }
+        html = template.render(context)
+        pdf = render_to_pdf('pdf/ticket.html', context)
+        if pdf:
+            response = HttpResponse(pdf, content_type='application/pdf')
+            filename = 'Ticket_number_%s.pdf' % "1235131"
+            content = "inline; filename='%s'" % filename
+            # if param download has some value - automatic downloading
+            download = request.GET.get('download')
+            if download:
+                content = "attachment; filename='%s'" % filename
+            response['Content-Disposition'] = content
+            return response
+        return HttpResponse('PDF file not found')
 
 
 

@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^manager/', include('manager.urls')),
     url(r'^portal/', include('portal.urls')),
     url(r'^serialized/', views.TripList.as_view()),
+    url(r'^ticket_pdf/', views.GeneratePDF.as_view()),
+
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
