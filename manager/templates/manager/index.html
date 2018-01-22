@@ -2,9 +2,34 @@
 {% block title %}Manager{% endblock %}
 {% block nav_active %}active{% endblock %}
 {% block content %}
-    <ul>
-        <li><a href="{% url 'manager:carrier_list' %}">Carriers</a></li>
-        <li><a href="{% url 'manager:order_list' %}">Orders</a></li>
-        <li><a href="{% url 'manager:trip_list' %}">Trips</a></li>
-    </ul>
+    <div class="row mt-5">
+        <div class="col-4">
+            <div class="alert alert-secondary carriers" role="alert" style="min-height: 300px;">
+              <div class="mt-3 text-center">
+                  <button type="button" class="btn btn-outline-primary">
+                    <a href="{% url 'manager:carrier_list' %}">Carriers</a>
+                  </button>
+              </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="alert alert-primary orders" role="alert" style="min-height: 300px;">
+              <div class="mt-3 text-center">
+                  <button type="button" class="btn btn-outline-primary">
+                    <a href="{% url 'manager:order_list' %}">Orders</a>
+                  </button>
+              </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="alert alert-secondary trips" role="alert" style="min-height: 300px;">
+                <div class="mt-3 text-center">
+                  <button type="button" class="btn btn-outline-primary">
+                    <a href="{% url 'manager:trip_list' %}">Trips</a>
+                  </button>
+              </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
