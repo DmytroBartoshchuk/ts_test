@@ -2,6 +2,7 @@ from django.conf.urls import url
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.views import login, logout
 
 app_name = 'manager'
 
@@ -9,8 +10,12 @@ urlpatterns = [
     # /manager/
     url(r'^$', views.index, name='index'),
 
-    #
+    # /manager/register/
     url(r'^register/$', views.UserFormView.as_view(), name='register'),
+
+    # /manager/login/
+    url(r'^login/$', login, {'template_name': 'manager/login.html'}, name='login'),
+    url(r'^logout/$', logout, {'template_name': 'manager/logout.html'}, name='logout'),
 
     # /manager/carriers/
     url(r'^carriers/$', views.IndexCarrierView.as_view(), name='carrier_list'),
