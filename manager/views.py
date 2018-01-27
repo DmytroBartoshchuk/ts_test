@@ -10,7 +10,7 @@ from rest_framework import status
 from django.http import HttpResponse
 from django.template.loader import get_template
 from .models import Carrier, Order, Trip
-from .forms import UserForm
+from .forms import UserForm, CarrierEditForm
 from .serializers import TripSerializer
 from .utils import render_to_pdf
 
@@ -71,8 +71,8 @@ class CarrierCreate(CreateView):
 
 class CarrierUpdate(UpdateView):
     model = Carrier
-    fields = ['name', 'register_date']
-    template_name = 'carriers/carrier_form.html'
+    form_class = CarrierEditForm
+    template_name = 'carriers/carrier_edit_form.html'
 
 
 class CarrierDelete(DeleteView):

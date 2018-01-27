@@ -39,7 +39,7 @@ urlpatterns = [
     url(r'^carrier/add/$', views.CarrierCreate.as_view(), name='carrier-add'),
 
     # /manager/carrier/<carrier_id>/
-    url(r'^carrier/(?P<pk>[0-9]+)/$', views.CarrierUpdate.as_view(), name='carrier-update'),
+    url(r'^carriers/edit/(?P<pk>[0-9]+)/$', views.CarrierUpdate.as_view(), name='carrier-update'),
 
     # /manager/carrier/<carrier_id>/delete/
     url(r'^carrier/(?P<pk>[0-9]+)/delete/$', views.CarrierDelete.as_view(), name='carrier-delete'),
