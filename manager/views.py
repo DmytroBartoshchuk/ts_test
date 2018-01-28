@@ -13,9 +13,11 @@ from .models import Carrier, Order, Trip
 from .forms import UserForm, CarrierEditForm
 from .serializers import TripSerializer
 from .utils import render_to_pdf
+from django.contrib.auth.decorators import login_required
 
 
 # main manager views
+
 def index(request):
     return render(request, 'manager/index.html')
 

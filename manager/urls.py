@@ -3,6 +3,7 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.views import login, logout
+from django.contrib.auth.decorators import login_required
 
 app_name = 'manager'
 
@@ -18,7 +19,7 @@ urlpatterns = [
     url(r'^logout/$', logout, {'template_name': 'manager/logout.html'}, name='logout'),
 
     # /manager/carriers/
-    url(r'^carriers/$', views.IndexCarrierView.as_view(), name='carrier_list'),
+    url(r'^carriers/$', login_required(views.IndexCarrierView.as_view()), name='carrier_list'),
 
     # /manager/carriers/<carrier_id>/
     url(r'^carriers/(?P<pk>[0-9]+)/$', views.DetailCarrierView.as_view(), name='carrier_detail'),
