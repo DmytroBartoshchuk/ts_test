@@ -1,5 +1,5 @@
-from django.shortcuts import redirect
+from django.shortcuts import render
 
 
-def login_redirect(request):
-    return redirect('/manager/login/')
+def welcome(request):
+    return render(request, 'manager/welcome.html')

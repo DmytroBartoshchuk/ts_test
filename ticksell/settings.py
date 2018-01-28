@@ -125,6 +125,7 @@ LOGIN_REDIRECT_URL = '/manager/'
 LOGIN_URL = '/manager/login/'
 
 LOGIN_EXEMPT_URLS = (
+    r'^$',
     r'^manager/logout/$',
     r'^manager/register/$'
 )

@@ -2,14 +2,16 @@
 {% block title %}Manager{% endblock %}
 {% block nav_active %}active{% endblock %}
 {% block content %}
-    <div class="row" style="margin-top: 300px;">
-        <div class="col-5 ml-auto mr-auto">
-          <button type="button" class="btn btn-outline-primary">
+    <div class="row" style="margin-top: 150px;">
+        <div class="col-7 ml-auto mr-auto">
+            <h1>WELCOME TO TICKSELL</h1><br>
+            {% if user.is_authenticated %}
+            <h3>We glad to see you, {{user}}!</h3>
+            {% else %}
             <a href="{% url 'manager:register' %}">Create new account</a>
-          </button>
-          <button type="button" class="btn btn-outline-primary">
-            <a href="#">Login</a>
-          </button>
+            or
+            <a href="{% url 'manager:login' %}">Login</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
