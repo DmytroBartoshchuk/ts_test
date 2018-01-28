@@ -18,8 +18,10 @@ class LoginRequiredMiddleware:
     def process_view(self, request, view_func, view_args, view_kwargs):
         assert hasattr(request, 'user')
         path = request.path_info.lstrip('/')
-        print(path)
 
-        if not request.user.is_authenticated:
-            if not any(url.match(path) for url in EXEMPT_URLS):
-                return redirect(settings.LOGIN_URL)
+        url_is_exempt = any(url.match(path) for url in EXEMPT_URLS)
+
+        if request.user.is_authenticated or url_is_exempt:
+            return None
+        else:
+            return redirect(settings.LOGIN_URL)
